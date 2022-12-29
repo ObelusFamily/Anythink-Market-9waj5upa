@@ -332,4 +332,11 @@ router.delete("/:item/comments/:comment", auth.required, function(
   }
 });
 
+//returning list items according to title
+router.get("/?title", auth.required,async (req,res)=>{
+      const content = req.params.title;
+      let items = await Item.find({title:content});
+      return res.status(200).json({items});
+})
+
 module.exports = router;
